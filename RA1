@@ -1,16 +1,13 @@
-% interface_usuario.pl
-
-:- consult('motor_inferencia.pl').
 :- dynamic resposta/2.
-
 % FLUXO PRINCIPAL
 iniciar :-
     questionario,
-    mostrarresultado.
+	mostrar_resultado.
 
+	
 % PREDICADO PARA EXIBIR PERGUNTAS E VALIDAR RESPOSTAS
 perguntar(Id) :-
-    pergunta(Id, Texto, ),
+    pergunta(Id, Texto, _),
     format("~w, (s/n)", [Texto]), nl,
     read(Resposta),
     ( member(Resposta, [s, n]) ->
@@ -23,7 +20,7 @@ perguntar(Id) :-
 questionario :-
     writeln('Olá! Seja bem-vindo ao teste de compatibilidade para especializações de TI.'),
     writeln('Responda as perguntas com s (sim) ou n (não).'), nl,
-    forall(pergunta(Id, , ), perguntar(Id)), nl.
+    forall(pergunta(Id, _, _), perguntar(Id)), nl.
 
 
 % PREDICADO PARA CÁLCULAR DE PONTUAÇÃO POR TRILHA
@@ -82,8 +79,8 @@ mostrar_resultado :-
     ).
 
 % PREDICADO PARA EXECUTAR ARQUIVO DE TESTE
-testeperfil(Arquivo) :-
-    retractall(resposta(, _)),
+teste_perfil(Arquivo) :-
+    retractall(resposta(_, _)),
     consult(Arquivo),
     mostrar_resultado.
 
