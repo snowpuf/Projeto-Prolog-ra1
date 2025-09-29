@@ -86,3 +86,83 @@ testeperfil(Arquivo) :-
     retractall(resposta(, _)),
     consult(Arquivo),
     mostrar_resultado.
+
+
+% base_conhecimento.pl
+
+% TRILHAS DE ESPECIALIZAÇÃO
+trilha(inteligencia_artificial, 'Análise e implementação de algoritmos de IA e aprendizado de máquina.').
+trilha(desenvolvimento_web, 'Desenvolvimento de aplicações e interfaces web.').
+trilha(seguranca_da_informacao, 'Proteção de sistemas, dados e infraestrutura digital.').
+trilha(ciencia_de_dados, 'Análise e interpretação de grandes volumes de dados para extrair conhecimento.').
+trilha(redes_e_infraestrutura, 'Gerenciamento de redes de computadores e infraestrutura de TI.').
+trilha(ux_design, 'Design e experiência do usuário para aplicações digitais.').
+trilha(engenharia_de_software, 'Planejamento e desenvolvimento de sistemas complexos de software.').
+trilha(sistemas_embarcados, 'Programação e integração de hardware e sistemas embarcados.').
+trilha(business_intelligence, 'Análise estratégica de dados para suporte à decisão empresarial.').
+trilha(desenvolvimento_de_jogos, 'Criação de jogos digitais e mecânicas interativas.').
+
+% PERGUNTAS
+pergunta(1, 'Você gosta de Matemática e raciocínio lógico?', matematica_raciocinio_logico).
+pergunta(2, 'Você tem interesse em programação de aplicações web?', programacao_web).
+pergunta(3, 'Você gosta de trabalhar com grandes volumes de dados?', analise_dados).
+pergunta(4, 'Você tem interesse em segurança digital e ciberataques?', seguranca_digital).
+pergunta(5, 'Você gosta de redes de computadores e infraestrutura?', redes_infraestrutura).
+pergunta(6, 'Você tem interesse em aprendizado de máquina e IA?', aprendizado_maquina_ia).
+pergunta(7, 'Você gosta de design e experiência do usuário?', design_visual).
+pergunta(8, 'Você gosta de programação de sistemas embarcados e hardware?', sistemas_embarcados).
+pergunta(9, 'Você gosta de análise de negócios e tomada de decisão baseada em dados?', decisao_baseada_em_dados).
+pergunta(10, 'Você tem interesse em desenvolver jogos digitais?', jogos_digitais).
+
+% ASSOCIAÇÃO DE TRILHAS, CARACTERISTICAS E PESOS
+% perfil(Trilha, Caracteristica, Peso).
+
+% Inteligência Artificial
+perfil(inteligencia_artificial, matematica_raciocinio_logico, 3).
+perfil(inteligencia_artificial, aprendizado_maquina_ia, 4).
+perfil(inteligencia_artificial, analise_dados, 2).
+
+% Desenvolvimento Web
+perfil(desenvolvimento_web, programacao_web, 4).
+perfil(desenvolvimento_web, design_visual, 2).
+perfil(desenvolvimento_web, matematica_raciocinio_logico, 1).
+
+% Segurança da Informação
+perfil(seguranca_da_informacao, seguranca_digital, 4).
+perfil(seguranca_da_informacao, redes_infraestrutura, 2).
+perfil(seguranca_da_informacao, matematica_raciocinio_logico, 2).
+
+% Ciência de Dados
+perfil(ciencia_de_dados, analise_dados, 4).
+perfil(ciencia_de_dados, matematica_raciocinio_logico, 3).
+perfil(ciencia_de_dados, decisao_baseada_em_dados, 3).
+
+% Redes e Infraestrutura
+perfil(redes_e_infraestrutura, redes_infraestrutura, 4).
+perfil(redes_e_infraestrutura, seguranca_digital, 2).
+perfil(redes_e_infraestrutura, sistemas_embarcados, 2).
+
+% UX Design
+perfil(ux_design, design_visual, 4).
+perfil(ux_design, programacao_web, 2).
+perfil(ux_design, decisao_baseada_em_dados, 1).
+
+% Engenharia de Software
+perfil(engenharia_de_software, programacao_web, 3).
+perfil(engenharia_de_software, matematica_raciocinio_logico, 3).
+perfil(engenharia_de_software, sistemas_embarcados, 2).
+
+% Sistemas Embarcados
+perfil(sistemas_embarcados, sistemas_embarcados, 4).
+perfil(sistemas_embarcados, redes_infraestrutura, 2).
+perfil(sistemas_embarcados, matematica_raciocinio_logico, 2).
+
+% Business Intelligence
+perfil(business_intelligence, decisao_baseada_em_dados, 4).
+perfil(business_intelligence, analise_dados, 3).
+perfil(business_intelligence, matematica_raciocinio_logico, 2).
+
+% Desenvolvimento de Jogos
+perfil(desenvolvimento_de_jogos, jogos_digitais, 4).
+perfil(desenvolvimento_de_jogos, design_visual, 2).
+perfil(desenvolvimento_de_jogos, matematica_raciocinio_logico, 2).
