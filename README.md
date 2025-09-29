@@ -7,3 +7,6 @@ Bruno Danguy Bortolini : snowpuf
 João Gabriel de Paula Leite Abreu : J-4breu
 Kevyn Gabriel Gonçalves de Moraes :
 Lorenzo Nakayama Machado : lorenzonmachado
+
+
+PARA RODAR ARQUIVOS DE TESTES NO SWITSH COLOQUE OS MESMOS DENTRO DO ARQUIVO PRINCIPAL
