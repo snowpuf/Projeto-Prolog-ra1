@@ -25,6 +25,50 @@ questionario :-
     writeln('Responda as perguntas com s (sim) ou n (não).'), nl,
     forall(pergunta(Id, , ), perguntar(Id)), nl.
 
+
+% PREDICADO PARA CÁLCULAR DE PONTUAÇÃO POR TRILHA
+valor_resposta(s, 1).
+valor_resposta(n, 0).
+
+pontuacao(Trilha, Total) :-
+    findall(
+        Valor,
+        ( 
+          perfil(Trilha, Caracteristica, Peso), 
+          pergunta(Id, _, Caracteristica), 
+          resposta(Id, Resposta),
+          valor_resposta(Resposta, V),
+          Valor is Peso * V
+        ),
+        ListaValores
+        ),
+    sum_list(ListaValores, Total).
+
+% PREDICADO PARA GERAR LISTA DE PONTUAÇÕES POR TRILHA
+lista_pontuacao_trilha(ListaPontuacaoTrilha) :-
+    findall(
+        (Total, Trilha),
+        (trilha(Trilha, _), pontuacao(Trilha, Total)),
+        ListaPontuacao
+        ),
+    sort(ListaPontuacao, ListaCrescente),
+    reverse(ListaCrescente, ListaPontuacaoTrilha).
+
+% PREDICADO PARA JUSTIFICAR RECOMENDAÇÃO
+justificativa(Trilha) :-
+    writeln('Justificativa para a trilha:'),
+    forall(
+        (
+            perfil(Trilha, Caracteristica, Peso),
+            pergunta(Id, Texto, Caracteristica),
+            resposta(Id, Resposta),
+            valor_resposta(Resposta, V),
+            V > 0
+        ),
+        format('Pergunta: ~w, Peso: ~w, Resposta: ~w~n', [Texto, Peso, Resposta])
+    ).
+
+
 % PREDICADO PARA EXIBIR AFINIDADE COM CADA TRILHA
 mostrar_resultado :-
     lista_pontuacao_trilha(Lista),
