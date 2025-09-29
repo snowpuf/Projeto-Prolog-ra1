@@ -6,4 +6,4 @@ Professor: Frank Coelho de Alcantara
 Bruno Danguy Bortolini : snowpuf
 João Gabriel de Paula Leite Abreu : J-4breu
 Kevyn Gabriel Gonçalves de Moraes :
-Lorenzo
+Lorenzo Nakayama Machado : lorenzonmachado
