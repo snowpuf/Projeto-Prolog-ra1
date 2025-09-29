@@ -1,1 +1,44 @@
+% interface_usuario.pl
 
+:- consult('motor_inferencia.pl').
+:- dynamic resposta/2.
+
+% FLUXO PRINCIPAL
+iniciar :-
+    questionario,
+    mostrarresultado.
+
+% PREDICADO PARA EXIBIR PERGUNTAS E VALIDAR RESPOSTAS
+perguntar(Id) :-
+    pergunta(Id, Texto, ),
+    format("~w, (s/n)", [Texto]), nl,
+    read(Resposta),
+    ( member(Resposta, [s, n]) ->
+        assertz(resposta(Id, Resposta));
+        writeln('Entrada inválida! Responda com s ou n.'),
+        perguntar(Id)
+    ).
+
+% PREDICADO PARA EXIBIR QUESTIONÁRIO DINÂMICO
+questionario :-
+    writeln('Olá! Seja bem-vindo ao teste de compatibilidade para especializações de TI.'),
+    writeln('Responda as perguntas com s (sim) ou n (não).'), nl,
+    forall(pergunta(Id, , ), perguntar(Id)), nl.
+
+% PREDICADO PARA EXIBIR AFINIDADE COM CADA TRILHA
+mostrar_resultado :-
+    lista_pontuacao_trilha(Lista),
+    writeln('Resultados finais:'), nl,
+    forall(
+        member((Total, Trilha), Lista),
+        (
+            format('Trilha: ~w, Pontuação: ~w~n', [Trilha, Total]), nl,
+            justificativa(Trilha), nl
+        )
+    ).
+
+% PREDICADO PARA EXECUTAR ARQUIVO DE TESTE
+testeperfil(Arquivo) :-
+    retractall(resposta(, _)),
+    consult(Arquivo),
+    mostrar_resultado.
